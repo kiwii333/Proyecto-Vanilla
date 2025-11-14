@@ -1,6 +1,6 @@
 let boton = document.getElementById("boton");
 let cont = 0;
-let input = document.getElementById('correo');
+
 
 function entrar(evento){
     if(evento.crtlKey){
@@ -11,7 +11,7 @@ function entrar(evento){
         <input type="button" value="iniciar sesión" id="iniciar">
         `
         var bienvenido = document.getElementById("p1");
-        bienvenido.body.removeChild(bienvenido)
+        document.body.removeChild(bienvenido)
         
         
         
@@ -22,36 +22,61 @@ function entrar(evento){
 
 
 
-var temp = setInterval(function(){
-    cont++;
-    if(cont==5){
-        clearInterval(temp);
-        document.getElementById('body').innerHTML += `
-        <p>Usuario</p>
-        <input type="text" name="usuario id="correo">
-        <br>  
-        <input type="button" value="iniciar sesión" id="iniciar">
-        `
-        input.onblur = function(){
-            if(!input.value.includes('@')){
-               document.getElementById('body').innerHTML += `correo incorrecto` 
-            }
-        } 
+var temp = setTimeout(function(){
+    
+    
+   
+    document.body.innerHTML += `
+    <p>Usuario</p>
+    <input type="text" name="usuario" id="correo">
+    <br>  
+    <input type="button" value="iniciar sesión" id="iniciar">
+    `
+
+    input = document.getElementById("correo");
+
+
+    var bienvenido = document.getElementById("p1");
+    document.body.removeChild(bienvenido)
+
+
+    
+    input.onblur = function(){
+        if(!input.value.includes('@')){
+            document.getElementById('body').innerHTML += `correo incorrecto` 
+        }else{
+            innerHTML += 'correo correcto'
+        }
+        
     }
-},5000);
 
-function iniciar(evento){
-    if(evento.type=='click'){
-        input.onfocus = function(){
-            if(!input.value.includes('@')){
-               innerHTML += `correo incorrecto` 
-
-            }
+    function iniciar(evento){
+        if(evento.type=='click'){
+            localStorage.setItem('email', input.value)
+            localStorage.getItem('email')
+            localStorage.setItem('hora',document.timeline)
+            localStorage.getItem('hora')
+            window.location.assign('index.html')
         }
     }
-}
+
+
+    
+        
+    document.getElementById("iniciar").onclick = iniciar
+    
+
+},1000);
 
 
 
-document.getElementById('body').onkeyup = entrar;
-document.getElementById('iniciar').onclick = iniciar
+    
+
+
+    
+
+
+
+
+
+document.body.onkeyup = entrar;
